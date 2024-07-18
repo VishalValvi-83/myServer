@@ -143,6 +143,17 @@ app.delete('/plant/:id', (req, res) => {
 })
 
 
+app.use("*", (req, res) => {
+
+  res.send(
+    `<div>
+    <h1 style="text-align: center; color : red;" >404 Not Found!!!</h1>
+    </div>`
+  )
+
+})
+
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
+
