@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config()
+import cors from 'cors'
 
 
 import { gethealth } from './controllers/health.js';
@@ -11,7 +12,7 @@ import mongoose from 'mongoose';
 
 const app = express();
 app.use(express.json());
-
+app.use(cors())
 const dbconnection = async () => {
   const conn = await mongoose.connect(process.env.DB_URL)
 
@@ -26,32 +27,7 @@ const dbconnection = async () => {
 
 dbconnection()
 
-const plants = [
-  {
-    "id": 1,
-    "name": "Mogra",
-    "category": "indoor",
-    "image": "https://identity.getpostman.com/images/logo-postman.svg",
-    "price": 280,
-    "description": "This is a flower 🌸"
-  },
-  {
-    "id": 2,
-    "name": "Rose",
-    "category": "outdoor",
-    "image": "https://example.com/rose.jpg",
-    "price": 350,
-    "description": "This is a beautiful flower 💐"
-  },
-  {
-    "id": 3,
-    "name": "Lily",
-    "category": "indoor",
-    "image": "https://example.com/lily.jpg",
-    "price": 220,
-    "description": "This is a lovely flower 💮"
-  }
-];
+
 
 app.get("/health", gethealth)
 app.post('/plant', postPlant);
