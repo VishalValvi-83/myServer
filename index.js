@@ -6,11 +6,25 @@ dotenv.config()
 import { gethealth } from './controllers/health.js';
 import { deletePlantId, getPlantId, getPlants, postPlant, putPlantId } from './controllers/plant.js';
 import { errorHandler } from './controllers/errors.js';
+import mongoose from 'mongoose';
 
 
 const app = express();
-app.use(express.json()); // added parentheses to call the function
+app.use(express.json());
 
+const dbconnection = async () => {
+  const conn = await mongoose.connect(process.env.DB_URL)
+
+  if (conn) {
+    console.log(`Connected to MongoDB`);
+  }
+  else {
+    console.log("Failed to connect to MongoDB");
+
+  }
+}
+
+dbconnection()
 
 const plants = [
   {
