@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const plantSchema = new Schema({
     name: String,
-    cateogory: String,
+    category: String,
     image: String,
     price: Number,
     description: String
