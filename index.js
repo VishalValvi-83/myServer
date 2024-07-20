@@ -30,6 +30,16 @@ dbconnection()
 
 
 app.get("/health", gethealth)
+app.get("/", (req, res) => {
+
+  res.send(
+    `<div>
+    <h1 style="text-align: center; color : green;" >Home Page <br/><a href="/plants">All Plants</a></h1>
+    
+    </div>`
+  )
+
+})
 app.post('/plant', postPlant);
 app.get('/plants', getPlants);
 app.get('/plant/:id', getPlantId)
